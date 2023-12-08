@@ -1,0 +1,10 @@
+#!/bin/sh
+
+INPUT_FILE=$1
+COMMIT_MSG=`head -n1 $INPUT_FILE`
+PATTERN="^(feat|fix|build|chore|ci|docs|style|refactor|perf|test)(\([a-zA-Z]+\))?!?:.+$"
+
+if ! [[ "$COMMIT_MSG" =~ $PATTERN  ]]; then
+  printf "\033[0;35mBad commit message, see example: \033[0;33m'feat(FeatureName): commit description' \033[0;35mor \033[0;33m'fix(FixName): commit description'\n\033[0m"
+  exit 1
+fi

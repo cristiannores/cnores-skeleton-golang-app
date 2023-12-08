@@ -1,0 +1,25 @@
+{
+  "professionalID" :"5fa93bf22cfa9b012c7a3aaa",
+  "medicalCenterID": "5fa93bf22cfa9b012c7a3aaa",
+  "specialityID": "5fa93bf22cfa9b012c7a3bbb",
+  "name" :"asdasdsa",
+  "categoryName":"asdsadsad",
+  "categoryID" :"asdsad",
+  "tagName" :"asdsad",
+  "FONASACode" : "asdasdasd",
+  "LPUCode" : "",
+  "timeZone": "America/Santiago",
+  "date":"2023-11-20",
+  "dateRange" : {
+    "startDateTime" :"asdad",
+    "endDateTime" : "asdsad"
+  },
+  "pagination": {
+    "limit" : 10,
+    "offset" : 0
+  },
+  "order" : {
+    "sort" :"desc",
+    "field": "_id"
+  }
+}

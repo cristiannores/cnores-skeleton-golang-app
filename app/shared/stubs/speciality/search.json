@@ -1,0 +1,18 @@
+{
+  "medicalCenterID": "5fa93bf22cfa9b012c7a3aaa",
+  "specialityID": "5fa93bf22cfa9b012c7a3bbb",
+  "name" :"asdasdsa",
+  "showValid" : true,
+  "dateRange" : {
+    "startDateTime" :"asdad",
+    "endDateTime" : "asdsad"
+  },
+  "pagination": {
+    "limit" : 10,
+    "offset" : 0
+  },
+  "order" : {
+    "sort" :"desc",
+    "field": "_id"
+  }
+}

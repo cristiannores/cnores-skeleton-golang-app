@@ -1,0 +1,131 @@
+basePath: /
+definitions:
+  get_patient_detail_response.BasicInfo:
+    properties:
+      address:
+        type: string
+      bloodType:
+        type: string
+      dateOfBirth:
+        type: string
+      email:
+        type: string
+      emergencyContacts:
+        items:
+          $ref: '#/definitions/get_patient_detail_response.EmergencyContact'
+        type: array
+      gender:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      phoneNumber:
+        type: string
+    type: object
+  get_patient_detail_response.EmergencyContact:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      phoneNumber:
+        type: string
+      relation:
+        type: string
+    type: object
+  get_patient_detail_response.GetPatientDetailErrorResponse:
+    properties:
+      msg:
+        example: Error retrieving patient details
+        type: string
+    type: object
+  get_patient_detail_response.GetPatientDetailSuccessResponse:
+    properties:
+      basicInfo:
+        $ref: '#/definitions/get_patient_detail_response.BasicInfo'
+      createdAt:
+        type: string
+      createdBy:
+        type: string
+      identificationDocuments:
+        items:
+          $ref: '#/definitions/get_patient_detail_response.IdentificationDocuments'
+        type: array
+      roles:
+        items:
+          $ref: '#/definitions/get_patient_detail_response.Role'
+        type: array
+      updatedAt:
+        type: string
+      updatedBy:
+        type: string
+      userID:
+        type: string
+    type: object
+  get_patient_detail_response.IdentificationDocuments:
+    properties:
+      type:
+        type: string
+      value:
+        type: string
+    type: object
+  get_patient_detail_response.Role:
+    properties:
+      Role:
+        type: string
+      medicalCenterID:
+        type: string
+      professionalID:
+        type: string
+    type: object
+host: localhost:8701
+info:
+  contact: {}
+  description: Microservicio de usuarios
+  title: User medical connect
+  version: "1.0"
+paths:
+  /api/patients/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Obtiene el detaille del paciente por ID
+      parameters:
+      - description: Patient ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/get_patient_detail_response.GetPatientDetailSuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/get_patient_detail_response.GetPatientDetailErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/get_patient_detail_response.GetPatientDetailErrorResponse'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/get_patient_detail_response.GetPatientDetailErrorResponse'
+      security:
+      - Bearer: []
+      summary: Detalle del paciente
+      tags:
+      - Paciente
+schemes:
+- http
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

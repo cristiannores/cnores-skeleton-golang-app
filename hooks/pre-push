@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+go test -v -cover ./...
+
+if [[ $? != 0 ]]; then
+  printf "\033[0;30m\033[41mGO UNIT TEST FAILED\033[0m\n"
+  exit 1
+else
+  printf "\033[0;30m\033[42mGO UNIT TEST SUCCEEDED\033[0m\n"
+fi
+
+exit 0

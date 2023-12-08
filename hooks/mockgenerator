@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Verificamos si se proporcionó el nombre del archivo
+if [ $# -eq 0 ]; then
+  echo "Debe proporcionar el nombre del archivo como argumento."
+  exit 1
+fi
+
+# Asignamos el nombre del archivo a una variable
+file=$1
+
+# Verificamos si el archivo existe
+if [ ! -f "$file" ]; then
+  echo "El archivo $file no existe."
+  exit 1
+fi
+
+# Verificamos si se proporcionó el nombre de la interfaz
+if [ $# -eq 2 ]; then
+  interface=$2
+else
+  interface=""
+fi
+
+# Creamos la ruta del archivo de mock
+mock_path=$(dirname "${file}")/mock
+mock_file=$(basename "${file}")
+mock_file="mock_${mock_file%.*}.go"
+mock_file_path="$mock_path/$mock_file"
+
+# Verificamos si la carpeta de mock existe, si no la creamos
+if [ ! -d "$mock_path" ]; then
+  mkdir -p "$mock_path"
+fi
+
+# Ejecutamos el comando mockgen con el nombre del archivo y la interfaz (si se proporcionó)
+if [ -z "$interface" ]; then
+  mockgen -source="$file" -destination="$mock_file_path"
+else
+  mockgen -source="$file" -destination="$mock_file_path" -package=$(dirname "${file}" | tr '/' '.') "$interface"
+fi

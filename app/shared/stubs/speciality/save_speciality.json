@@ -1,0 +1,32 @@
+{
+  "name": "Fonoaudiología",
+  "description": "Tratamiento de trastornos de la comunicación y el lenguaje.",
+  "detailedInfo": "Información detallada sobre Fonoaudiología...",
+  "medicalCenterID": "6554d7b21c24abcb3419d2f2",
+  "associatedServices": [
+    "6554d7b21c24abcb3419d2f3"
+  ],
+  "validFrom": "2022-12-31T21:00:00-03:00",
+  "validUntil": "2023-12-31T21:00:00-03:00",
+  "tags": [
+    {
+      "name": "Comunicación",
+      "description": "Relacionado con trastornos del habla y lenguaje"
+    }
+  ],
+  "reviews": [
+    {
+      "userID": "6554d7b21c24abcb3419d2f4",
+      "rating": 4,
+      "comment": "Buena atención en fonoaudiología",
+      "datePosted": "2023-01-30T18:20:00-03:00"
+    }
+  ],
+  "multimedia": [
+    {
+      "url": "http://example.com/fonoaudiologia.jpg",
+      "type": "http://example.com/fonoaudiologia.jpg",
+      "description": "Imagen de fonoaudiología"
+    }
+  ]
+}

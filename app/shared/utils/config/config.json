@@ -1,0 +1,21 @@
+{
+  "currentStage": "local",
+  "developers": ["cnores"],
+  "url": "miurl.com",
+  "port": "3768",
+  "notifier": {
+    "url": "https://hooks.slack.com",
+    "enable-faker" : false,
+    "timeout": 60000,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "token": "<token>"
+  },
+  "services": {
+  },
+  "database": {
+    "name": "cnores-skeleton-golang-app",
+    "url": "mongodb://localhost:27017/?directConnection=true"
+  }
+}

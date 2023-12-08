@@ -1,0 +1,73 @@
+{
+  "medicalCenterID": "5f50c5f71c4ae1378a7b23e7",
+  "professionalID": "5f50c6071c4ae1378a7b23e8",
+  "specialityID": "5f50c6171c4ae1378a7b23e9",
+  "name": "Consulta Médica General",
+  "description": "Consulta básica con médico general",
+  "detailedDescription": [
+    {
+      "title": "Procedimiento",
+      "content": [
+        {
+          "text": "La consulta incluye revisión general, diagnóstico y prescripción.",
+          "imageUrl": "http://example.com/imagen1.jpg",
+          "listItems": [
+            "Revisión",
+            "Diagnóstico",
+            "Prescripción"
+          ]
+        }
+      ]
+    }
+  ],
+  "price": 30000,
+  "currency": "CLP",
+  "category": {
+    "id": "5f50c6301c4ae1378a7b23ea",
+    "name": "Medicina General",
+    "description": "Servicios relacionados con la medicina general"
+  },
+  "fonasaCode": "123456",
+  "lpuCode": "7891011",
+  "validFrom": "2023-10-31T21:00:00-03:00",
+  "validUntil": "2024-10-31T21:00:00-03:00",
+  "availability": true,
+  "additionalInfo": "Esta consulta no incluye exámenes especializados.",
+  "tags": [
+    {
+      "name": "Consulta",
+      "description": "Consulta general"
+    },
+    {
+      "name": "Médico General"
+    }
+  ],
+  "recommendations": [
+    {
+      "itemID": "5f50c6471c4ae1378a7b23eb",
+      "relatedItems": [
+        "5f50c6571c4ae1378a7b23ec",
+        "5f50c6671c4ae1378a7b23ed"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "userID": "5f50c6771c4ae1378a7b23ee",
+      "rating": 4,
+      "comment": "Buena atención, pero la espera fue larga.",
+      "datePosted": "2023-11-02T10:00:00Z"
+    }
+  ],
+  "multimedia": [
+    {
+      "url": "http://example.com/video1.mp4",
+      "type": "video",
+      "description": "Video explicativo del servicio"
+    },
+    {
+      "url": "http://example.com/imagen2.jpg",
+      "type": "image"
+    }
+  ]
+}

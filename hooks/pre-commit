@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+STAGED_GO_FILES=$(git diff --cached --name-status | grep -Eo '^(?:M|A)\s+.*\.go$' )
+STAGED_GO_FOLDERS=$(git diff --cached --name-status | grep -Eo '^(?:M|A)\s+.*\.go$'  | sed -E 's/[MA][[:blank:]]*(.*)\/.+\.go$/\.\/\1/g' | sort -u)
+
+if [[ "$STAGED_GO_FILES" = "" ]]; then
+  printf "\033[0;30m\033[42mTHERE ISN'T GO FILE IN STAGE TO GO VET VALIDATION\033[0m\n"
+  exit 0
+fi
+
+PASS=true
+
+for FOLDER in $STAGED_GO_FOLDERS
+do
+
+  # Run govet on the staged file and check the exit status
+  go vet $FOLDER
+  if [[ $? != 0 ]]; then
+    printf "\t\033[31mgo vet $FOLDER\033[0m \033[0;30m\033[41mFAILURE!\033[0m\n"
+    PASS=false
+  else
+    printf "\t\033[32mgo vet $FOLDER\033[0m \033[0;30m\033[42mPASS\033[0m\n"
+  fi
+done
+
+if ! $PASS; then
+  printf "\033[0;30m\033[41mGO VET FAILED\033[0m\n"
+  exit 1
+else
+  printf "\033[0;30m\033[42mGO VET SUCCEEDED\033[0m\n"
+fi
+
+exit 0

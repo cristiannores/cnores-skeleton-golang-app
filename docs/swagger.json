@@ -1,0 +1,201 @@
+{
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "Microservicio de usuarios",
+        "title": "User medical connect",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8701",
+    "basePath": "/",
+    "paths": {
+        "/api/patients/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Obtiene el detaille del paciente por ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Paciente"
+                ],
+                "summary": "Detalle del paciente",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Patient ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/get_patient_detail_response.GetPatientDetailSuccessResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/get_patient_detail_response.GetPatientDetailErrorResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/get_patient_detail_response.GetPatientDetailErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/get_patient_detail_response.GetPatientDetailErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "get_patient_detail_response.BasicInfo": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "bloodType": {
+                    "type": "string"
+                },
+                "dateOfBirth": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "emergencyContacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/get_patient_detail_response.EmergencyContact"
+                    }
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "get_patient_detail_response.EmergencyContact": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "relation": {
+                    "type": "string"
+                }
+            }
+        },
+        "get_patient_detail_response.GetPatientDetailErrorResponse": {
+            "type": "object",
+            "properties": {
+                "msg": {
+                    "type": "string",
+                    "example": "Error retrieving patient details"
+                }
+            }
+        },
+        "get_patient_detail_response.GetPatientDetailSuccessResponse": {
+            "type": "object",
+            "properties": {
+                "basicInfo": {
+                    "$ref": "#/definitions/get_patient_detail_response.BasicInfo"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "createdBy": {
+                    "type": "string"
+                },
+                "identificationDocuments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/get_patient_detail_response.IdentificationDocuments"
+                    }
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/get_patient_detail_response.Role"
+                    }
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "updatedBy": {
+                    "type": "string"
+                },
+                "userID": {
+                    "type": "string"
+                }
+            }
+        },
+        "get_patient_detail_response.IdentificationDocuments": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "get_patient_detail_response.Role": {
+            "type": "object",
+            "properties": {
+                "Role": {
+                    "type": "string"
+                },
+                "medicalCenterID": {
+                    "type": "string"
+                },
+                "professionalID": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

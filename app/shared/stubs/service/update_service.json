@@ -1,0 +1,83 @@
+{
+  "serviceID": "6564948519dcc15f29cc5f4c",
+  "medicalCenterID": "5f50c5f71c4ae1378a7b23e7",
+  "professionalID": "5f50c6071c4ae1378a7b23e8",
+  "specialityID": "5f50c6171c4ae1378a7b23e9",
+  "name": "Consulta Médica General 3",
+  "description": "Consulta básica con médico general",
+  "detailedDescription": [
+    {
+      "id": "6564948519dcc15f29cc5f49",
+      "title": "Procedimiento",
+      "content": [
+        {
+          "id": "6564948519dcc15f29cc5f4a",
+          "text": "La consulta incluye revisión general, diagnóstico y prescripción.",
+          "imageUrl": "http://example.com/imagen1.jpg",
+          "listItems": [
+            "Revisión",
+            "Diagnóstico",
+            "Prescripción"
+          ]
+        }
+      ]
+    }
+  ],
+  "price": 30000,
+  "currency": "CLP",
+  "category": {
+    "id": "5f50c6301c4ae1378a7b23ea",
+    "name": "Medicina General",
+    "description": "Servicios relacionados con la medicina general"
+  },
+  "fonasaCode": "123456",
+  "lpuCode": "7891011",
+  "validFrom": "2023-10-31T18:00:00-03:00",
+  "validUntil": "2024-10-31T18:00:00-03:00",
+  "availability": true,
+  "additionalInfo": "Esta consulta no incluye exámenes especializados.",
+  "tags": [
+    {
+      "id": "6564948519dcc15f29cc5f47",
+      "name": "Consulta",
+      "description": "Consulta general"
+    },
+    {
+      "id": "6564948519dcc15f29cc5f48",
+      "name": "Médico General",
+      "description": "Consulta general"
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "6564948519dcc15f29cc5f46",
+      "itemID": "5f50c6471c4ae1378a7b23eb",
+      "relatedItems": [
+        "5f50c6571c4ae1378a7b23ec",
+        "5f50c6671c4ae1378a7b23ed"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "id": "",
+      "userID": "5f50c6771c4ae1378a7b23ee",
+      "rating": 4,
+      "comment": "Buena atención, pero la espera fue larga.",
+      "datePosted": "2023-11-02T04:00:00-03:00"
+    }
+  ],
+  "multimedia": [
+    {
+      "id": "6564948519dcc15f29cc5f43",
+      "url": "http://example.com/video1.mp4",
+      "type": "video",
+      "description": "Video explicativo del servicio"
+    },
+    {
+      "id": "6564948519dcc15f29cc5f44",
+      "url": "http://example.com/imagen2.jpg",
+      "type": "image"
+    }
+  ]
+}

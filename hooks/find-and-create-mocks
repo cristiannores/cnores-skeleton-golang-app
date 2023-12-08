@@ -1,0 +1,15 @@
+#!/bin/sh
+FILES_TO_MOCK=$(git diff --name-status HEAD | grep -Eo '^(?:M|A)\s+.*\.go$' | grep -vE '(mock|test)' | grep -Eo '\S+\.go' | xargs grep -EHo 'type\s+\S+\s+interface' | grep -Eo '\S+\.go' | sort -u)
+
+if [[ "$FILES_TO_MOCK" = "" ]]; then
+  printf "\033[0;30m\033[41mNO FILES TO MOCK\033[0m\n"
+  exit 0
+else
+  printf "\033[0;30m\033[42mMAKING MOCKS TO:\033[0m\n"
+fi
+
+for FILE in $FILES_TO_MOCK
+do
+  echo "$FILE"
+  source ./hooks/mockgenerator $FILE
+done

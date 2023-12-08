@@ -1,0 +1,35 @@
+{
+  "_id": "5f50c31eab35f2d123456789",
+  "name": "Cardiología",
+  "description": "Estudio del corazón y sus funciones en la salud y la enfermedad.",
+  "detailedInfo": "Información detallada sobre Cardiología...",
+  "medicalCenterID": "1234567890abcdef12345678",
+  "associatedServices": ["123serviceId1", "456serviceId2"],
+  "validFrom": "2021-01-01T00:00:00Z",
+  "validUntil": "2022-01-01T00:00:00Z",
+  "tags": [
+    {
+      "name": "Corazón",
+      "description": "Relacionado con el corazón"
+    }
+  ],
+  "reviews": [
+    {
+      "userID": "5f50c31eab35f2d987654321",
+      "rating": 5,
+      "comment": "Excelente servicio",
+      "datePosted": "2021-01-15T00:00:00Z"
+    }
+  ],
+  "multimedia": [
+    {
+      "url": "http://example.com/image.jpg",
+      "type": "image",
+      "description": "Imagen de cardiología"
+    }
+  ],
+  "createdBy": "5f50c31eab35f2d123456789",
+  "createdAt": "2021-01-01T00:00:00Z",
+  "updatedBy": "5f50c31eab35f2d987654321",
+  "updatedAt": "2021-01-10T00:00:00Z"
+}

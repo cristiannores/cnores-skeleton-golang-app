@@ -1,0 +1,36 @@
+{
+  "specialityID": "65614d3ce30ea778476b31f6",
+  "name": "Pedagogia 3",
+  "description": "Tratamiento de trastornos de la comunicación y el lenguaje.",
+  "detailedInfo": "Información detallada sobre Pediatria...",
+  "medicalCenterID": "6554d7b21c24abcb3419d2f1",
+  "associatedServices": [
+    "6554d7b21c24abcb3419d2f2"
+  ],
+  "validFrom": "0000-12-31T19:17:15-04:42",
+  "validUntil": "0000-12-31T19:17:15-04:42",
+  "tags": [
+    {
+      "id": "65614d3ce30ea778476b31f4",
+      "name": "Comunicación",
+      "description": "Relacionado con trastornos del habla y lenguaje"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "65614d3ce30ea778476b31f3",
+      "userID": "6554d7b21c24abcb3419d2f4",
+      "rating": 4,
+      "comment": "Buena atención en fonoaudiología",
+      "datePosted": "0000-12-31T19:17:15-04:42"
+    }
+  ],
+  "multimedia": [
+    {
+      "id": "65614d3ce30ea778476b31f2",
+      "url": "http://example.com/fonoaudiologia.jpg",
+      "type": "http://example.com/fonoaudiologia.jpg",
+      "description": "Imagen de fonoaudiología"
+    }
+  ]
+}
