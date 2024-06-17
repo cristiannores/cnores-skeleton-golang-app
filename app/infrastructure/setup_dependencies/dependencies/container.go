@@ -1,8 +1,6 @@
 package dependencies
 
 import (
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/gommon/log"
 	"cnores-skeleton-golang-app/app/infrastructure/metrics"
 	"cnores-skeleton-golang-app/app/infrastructure/mongo_client"
 	http_client "cnores-skeleton-golang-app/app/infrastructure/services/http"
@@ -11,6 +9,8 @@ import (
 	http_clients_faker "cnores-skeleton-golang-app/app/shared/faker/http_clients"
 	"cnores-skeleton-golang-app/app/shared/utils/config"
 	"cnores-skeleton-golang-app/app/shared/utils/error_handler"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/gommon/log"
 )
 
 type DependencyContainer struct {
@@ -23,7 +23,7 @@ type DependencyContainer struct {
 
 func NewDependencyContainer(config config.Config, echo *echo.Echo) *DependencyContainer {
 
-	mongoClient, _ := mongo_client.NewClient(config.Database.Url)
+	mongoClient, _ := mongo_client.NewClient(config.Database.Url, config.Database.TSL)
 	errConnecting := mongoClient.Connect()
 
 	if errConnecting != nil {

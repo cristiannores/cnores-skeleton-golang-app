@@ -13,6 +13,7 @@ type Config struct {
 type DatabaseSettings struct {
 	Name string `json:"name" validate:"required"`
 	Url  string `json:"url" validate:"required"`
+	TSL  bool   `json:"TSL"`
 }
 
 type Notifier struct {

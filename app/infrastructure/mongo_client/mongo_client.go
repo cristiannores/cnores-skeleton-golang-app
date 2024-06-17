@@ -2,15 +2,19 @@ package mongo_client
 
 import (
 	"context"
+	"crypto/tls"
+	"crypto/x509"
+	"errors"
 	"fmt"
+	"io/ioutil"
 	"reflect"
 
+	"cnores-skeleton-golang-app/app/infrastructure/constant"
+	utils_context "cnores-skeleton-golang-app/app/shared/utils/context"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
-	"cnores-skeleton-golang-app/app/infrastructure/constant"
-	utils_context "cnores-skeleton-golang-app/app/shared/utils/context"
 )
 
 type DatabaseInterface[R any] interface {
@@ -21,6 +25,7 @@ type DatabaseInterface[R any] interface {
 type CollectionInterface[R any] interface {
 	FindOne(interface{}, interface{}) (R, error)
 	Find(interface{}, interface{}, ...*options.FindOptions) ([]R, error)
+	CountDocuments(ctx interface{}, filter interface{}) (int64, error)
 	InsertOne(ctx interface{}, param interface{}) (string, error)
 	UpdateOne(ctx interface{}, param interface{}, update interface{}) (int, error)
 	DeleteOne(ctx interface{}, filter interface{}) (int64, error)
@@ -51,9 +56,37 @@ type mongoCollection[R any] struct {
 	coll *mongo.Collection
 }
 
-func NewClient(uri string) (MongoClientInterface, error) {
-	client, err := mongo.NewClient(options.Client().ApplyURI(uri))
-	return &mongoClient{cl: client}, err
+func NewClient(uri string, isTSL bool) (MongoClientInterface, error) {
+	if isTSL {
+		caFilePath := "/app/global-bundle.cer"
+		tlsConfig, err := getCustomTLSConfig(caFilePath)
+		if err != nil {
+			return nil, err
+		}
+		client, err := mongo.NewClient(options.Client().ApplyURI(uri).SetTLSConfig(tlsConfig))
+		return &mongoClient{cl: client}, err
+	} else {
+		client, err := mongo.NewClient(options.Client().ApplyURI(uri))
+		return &mongoClient{cl: client}, err
+	}
+}
+
+func getCustomTLSConfig(caFile string) (*tls.Config, error) {
+	tlsConfig := new(tls.Config)
+	certs, err := ioutil.ReadFile(caFile)
+
+	if err != nil {
+		return tlsConfig, err
+	}
+
+	tlsConfig.RootCAs = x509.NewCertPool()
+	ok := tlsConfig.RootCAs.AppendCertsFromPEM(certs)
+
+	if !ok {
+		return tlsConfig, errors.New("Failed parsing pem file")
+	}
+
+	return tlsConfig, nil
 }
 
 func (mc *mongoClient) UseSession(ctx context.Context, fn func(sessCtx mongo.SessionContext) error) error {
@@ -125,6 +158,18 @@ func (mc *mongoCollection[R]) FindOne(ctx interface{}, filter interface{}) (R, e
 	}
 	log.Info(fmt.Sprintf("Found one result sucessfully"))
 	return res, nil
+}
+
+func (mc *mongoCollection[R]) CountDocuments(ctx interface{}, filter interface{}) (int64, error) {
+
+	var findContext context.Context
+	if reflect.TypeOf(ctx).String() == "*context.emptyCtx" || reflect.TypeOf(ctx).String() == "*context.valueCtx" {
+		findContext = (ctx).(context.Context)
+	} else {
+		findContext = (ctx).(mongo.SessionContext)
+	}
+	return mc.coll.CountDocuments(findContext, filter)
+
 }
 
 func (mc *mongoCollection[R]) Find(ctx interface{}, filter interface{}, findOptions ...*options.FindOptions) ([]R, error) {
